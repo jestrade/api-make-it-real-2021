@@ -3,19 +3,13 @@
 ## Clone the repo
 
 ```
-git clone https://github.com/jestrade/make-it-real-2021-01.git
-```
-
-## use the folder 06
-
-```
-cd 06-web
+git clone https://github.com/jestrade/api-make-it-real-2021.git
 ```
 
 ## Install the app
 
 ```
-npm install
+yarn
 ```
 
 ## Create .env file
@@ -30,7 +24,7 @@ APIWEATHERKEY=
 ## Run the app
 
 ```
-npm start
+yarn start
 ```
 
 ## Dev mode
@@ -38,11 +32,17 @@ npm start
 ### Install nodemon globally
 
 ```
-npm install --global nodemon
+yarn install --global nodemon
 ```
 
 ### Run the app
 
 ```
-npm run dev
+yarn run dev
+```
+
+### Run tests
+
+```
+yarn run test
 ```
