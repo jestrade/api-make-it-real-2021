@@ -35,11 +35,13 @@ const validateLogin = (req, res, next) => {
 };
 
 const validateUser = (req, res, next) => {
-  const { name, email, username, password, passwordConfirmation } = req.body;
+  const {
+    name, email, username, password, passwordConfirmation,
+  } = req.body;
   const errors = [];
   const regExpEmail = new RegExp(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/);
   const regExpPassword = new RegExp(
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
   );
 
   if (name && email && username && password && passwordConfirmation) {

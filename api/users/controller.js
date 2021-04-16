@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const { config } = require('./../../config');
+const { config } = require('../../config');
 let { users } = require('./model');
 
 const list = (req, res) => {
@@ -7,7 +7,9 @@ const list = (req, res) => {
 };
 
 const create = (req, res) => {
-  const { name, email, username, password } = req.body;
+  const {
+    name, email, username, password,
+  } = req.body;
 
   const user = {
     name,
@@ -28,7 +30,9 @@ const create = (req, res) => {
 
 const update = (req, res) => {
   const usernameParam = req.params.username;
-  const { name, email, username, password } = req.body;
+  const {
+    name, email, username, password,
+  } = req.body;
 
   if (name && email && username && password) {
     const user = {
@@ -38,9 +42,9 @@ const update = (req, res) => {
       password,
     };
 
-    let position = users.findIndex((u) => u.username === usernameParam);
+    const position = users.findIndex((u) => u.username === usernameParam);
 
-    if (position != -1) {
+    if (position !== -1) {
       users[position] = user;
       res.status(204).json(users);
     } else {
@@ -49,7 +53,7 @@ const update = (req, res) => {
         .json({ message: `No existe el usuario ${usernameParam}` });
     }
   } else {
-    res.status(500).json({ message: `Hay datos nulos` });
+    res.status(500).json({ message: 'Hay datos nulos' });
   }
 };
 
@@ -62,7 +66,7 @@ const login = (req, res) => {
   };
 
   const found = users.filter(
-    (u) => u.username === user.username && u.password === user.password
+    (u) => u.username === user.username && u.password === user.password,
   );
 
   if (found && found.length > 0) {
@@ -79,4 +83,10 @@ const remove = (req, res) => {
   res.status(200).json(users);
 };
 
-module.exports = { list, create, update, login, remove };
+module.exports = {
+  list,
+  create,
+  update,
+  login,
+  remove,
+};

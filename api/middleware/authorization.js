@@ -1,4 +1,4 @@
-const { locale } = require('./../../locale');
+const { locale } = require('../../locale');
 
 const usersAuthorization = (req, res, next) => {
   const { username, authUsername } = req.body;

@@ -1,4 +1,4 @@
-let { tweets } = require('./model');
+const { tweets } = require('./model');
 
 const list = (req, res) => {
   res.status(200).json(tweets);
