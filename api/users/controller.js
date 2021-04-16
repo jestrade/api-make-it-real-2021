@@ -1,38 +1,41 @@
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
+const { locale } = require('../../locale');
 const { config } = require('../../config');
-let { users } = require('./model');
 
-const list = (req, res) => {
+const User = require('./model');
+
+const list = async (req, res) => {
+  const users = await User.find({}, ['name', 'username']);
   res.status(200).json(users);
 };
 
-const create = (req, res) => {
-  const {
-    name, email, username, password,
-  } = req.body;
+const create = async (req, res) => {
+  const { name, email, username, password } = req.body;
+  const salt = bcrypt.genSaltSync(config.saltRounds);
+  const passwordHash = bcrypt.hashSync(password, salt);
 
   const user = {
     name,
     email,
     username,
-    password,
+    password: passwordHash,
   };
 
-  const found = users.filter((u) => u.username === user.username);
+  const newUser = new User(user);
+  await newUser.save();
 
-  if (found && found.length > 0) {
-    res.status(500).json({ message: `ya existe el usuario ${user.username}` });
-  } else {
-    users.push(user);
-    res.status(201).json(users);
+  try {
+    const users = await User.find({}, ['name', 'username']);
+    res.status(200).json(users);
+  } catch (err) {
+    res.status(500).json({ message: err });
   }
 };
 
 const update = (req, res) => {
   const usernameParam = req.params.username;
-  const {
-    name, email, username, password,
-  } = req.body;
+  const { name, email, username, password } = req.body;
 
   if (name && email && username && password) {
     const user = {
@@ -66,7 +69,7 @@ const login = (req, res) => {
   };
 
   const found = users.filter(
-    (u) => u.username === user.username && u.password === user.password,
+    (u) => u.username === user.username && u.password === user.password
   );
 
   if (found && found.length > 0) {

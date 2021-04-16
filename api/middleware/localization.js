@@ -2,7 +2,9 @@ const { locale } = require('../../locale');
 
 const localization = (req, res, next) => {
   const reqLocale = req.headers.locale;
-  locale.setCurrentLocale(reqLocale);
+  if (reqLocale) {
+    locale.setCurrentLocale(reqLocale);
+  }
 
   next();
 };
