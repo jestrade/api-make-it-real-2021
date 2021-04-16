@@ -1,16 +1,14 @@
-const users = [
-  {
-    name: 'Jesus',
-    email: 'jesus@email.com',
-    username: 'jestrade',
-    password: '23456789',
-  },
-  {
-    name: 'David',
-    email: 'david@email.com',
-    username: 'davide',
-    password: '23456789',
-  },
-];
+const mongoose = require('mongoose');
 
-module.exports = { users };
+const collection = 'users';
+
+const schema = new mongoose.Schema({
+  name: { type: String, required: true },
+  username: { type: String, required: true },
+  email: { type: String, required: true },
+  password: { type: String, required: true },
+});
+
+const model = mongoose.model(collection, schema);
+
+module.exports = model;
