@@ -9,7 +9,7 @@ const users = require('./users/router');
 const tweets = require('./tweets/router');
 const weather = require('./weather/router');
 
-const { config } = require('./../config');
+const { config } = require('../config');
 
 const router = express.Router();
 const accessLogDir = config.log.access;

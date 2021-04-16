@@ -1,6 +1,7 @@
 const express = require('express');
 const { get } = require('./controller');
-const { logger } = require('./../middleware/logger');
+const { logger } = require('../middleware/logger');
+
 const router = express.Router();
 
 router.use(logger);
