@@ -17,6 +17,15 @@ const list = async (req, res) => {
 
 const create = async (req, res) => {
   const { name, email, username, password } = req.body;
+
+  const findUser = await User.find({ $or: [{ username }, { email }] });
+  if (findUser.length > 0) {
+    res
+      .status(500)
+      .json({ message: locale.translate('errors.user.userExists') });
+    return;
+  }
+
   const salt = bcrypt.genSaltSync(config.saltRounds);
   const passwordHash = bcrypt.hashSync(password, salt);
 
@@ -28,14 +37,9 @@ const create = async (req, res) => {
   };
 
   const newUser = new User(user);
-  await newUser.save();
-
-  try {
-    const users = await User.find({ active: true }, ['name', 'username']);
-    res.status(200).json(users);
-  } catch (err) {
-    res.status(500).json({ message: err });
-  }
+  newUser.save().then((userCreated) => {
+    res.status(200).json(userCreated);
+  });
 };
 
 const update = (req, res) => {
@@ -49,20 +53,8 @@ const update = (req, res) => {
       username,
       password,
     };
-
-    const position = users.findIndex((u) => u.username === usernameParam);
-
-    if (position !== -1) {
-      users[position] = user;
-      res.status(204).json(users);
-    } else {
-      res
-        .status(500)
-        .json({ message: `No existe el usuario ${usernameParam}` });
-    }
-  } else {
-    res.status(500).json({ message: 'Hay datos nulos' });
   }
+  //to do
 };
 
 const login = (req, res) => {
@@ -87,8 +79,8 @@ const login = (req, res) => {
 
 const remove = (req, res) => {
   const { username } = req.body;
-  users = users.filter((user) => user.username !== username);
-  res.status(200).json(users);
+
+  //to do
 };
 
 module.exports = {
