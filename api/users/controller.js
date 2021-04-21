@@ -70,23 +70,22 @@ const update = (req, res) => {
   //to do
 };
 
-const login = (req, res) => {
+const login = async (req, res) => {
   const { username, password } = req.body;
 
-  const user = {
-    username,
-    password,
-  };
-
-  const found = users.filter(
-    (u) => u.username === user.username && u.password === user.password
-  );
-
-  if (found && found.length > 0) {
-    const token = jwt.sign({ username: user.username }, config.jwtKey);
-    res.status(200).json({ token });
+  const foundUser = await User.findOne({ username });
+  if (foundUser) {
+    // eslint-disable-next-line no-underscore-dangle
+    const userId = foundUser._id;
+    const result = await bcrypt.compare(password, foundUser.password);
+    if (result) {
+      const token = jwt.sign({ userId }, config.jwtKey);
+      res.status(200).json({ token });
+    } else {
+      res.json({ message: locale.translate('errors.user.userNotExists') });
+    }
   } else {
-    res.status(500).json({ message: 'user not exists' });
+    res.json({ message: locale.translate('errors.user.userNotExists') });
   }
 };
 
