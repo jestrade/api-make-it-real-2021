@@ -6,13 +6,26 @@ const { config } = require('../../config');
 const User = require('./model');
 
 const list = async (req, res) => {
-  const users = await User.find({ active: true }, [
-    'name',
-    'username',
-    'createdAt',
-    'updatedAt',
-  ]);
-  res.status(200).json(users);
+  const { page = 1, limit = 10 } = req.query;
+  const skip = (page - 1) * limit;
+
+  User.find({ active: true }, ['name', 'username', 'createdAt', 'updatedAt'])
+    .limit(Number(limit))
+    .skip(skip)
+    .sort({ createdAt: -1 })
+    .then(async (users) => {
+      const total = await User.estimatedDocumentCount();
+      const totalPages = Math.round(total / limit);
+      const hasMore = page < totalPages;
+
+      res.status(200).json({
+        hasMore,
+        totalPages,
+        total,
+        users,
+        currentPage: page,
+      });
+    });
 };
 
 const create = async (req, res) => {
