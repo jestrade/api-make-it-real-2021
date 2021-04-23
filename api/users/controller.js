@@ -15,7 +15,7 @@ const list = async (req, res) => {
     .sort({ createdAt: -1 })
     .then(async (users) => {
       const total = await User.estimatedDocumentCount();
-      const totalPages = Math.round(total / limit);
+      const totalPages = Math.ceil(total / limit);
       const hasMore = page < totalPages;
 
       res.status(200).json({
