@@ -8,6 +8,7 @@ const app = express();
 app.use(express.json());
 app.use('/api', api);
 app.use('/api/v1', api);
+app.use(express.static('public'));
 
 const init = () => {
   app.listen(port, () => {
