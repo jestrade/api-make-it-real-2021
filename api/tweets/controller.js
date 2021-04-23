@@ -1,20 +1,71 @@
-const { tweets } = require('./model');
+const Tweet = require('./model');
 
 const list = (req, res) => {
-  res.status(200).json(tweets);
+  const { page = 1, limit = 10 } = req.query;
+  const skip = (page - 1) * limit;
+
+  Tweet.find({}, ['content', 'comments', 'likes', 'user', 'createdAt'])
+    .populate('user', ['name', 'username'])
+    .populate('comments.user', ['name', 'username'])
+    .limit(Number(limit))
+    .skip(skip)
+    .sort({ createdAt: -1 })
+    .then(async (tweets) => {
+      const total = await Tweet.estimatedDocumentCount();
+      const totalPages = Math.round(total / limit);
+      const hasMore = page < totalPages;
+
+      res.status(200).json({
+        hasMore,
+        totalPages,
+        total,
+        tweets,
+        currentPage: page,
+      });
+    });
 };
 
 const create = (req, res) => {
-  const { content, authUsername } = req.body;
-  const date = new Date().toDateString();
+  const { content, userId } = req.body;
 
   const tweet = {
     content,
-    username: authUsername,
-    date,
+    user: userId,
   };
-  tweets.push(tweet);
-  res.status(201).json(tweets);
+
+  const newTweet = new Tweet(tweet);
+  newTweet.save().then((tweetCreated) => {
+    res.status(200).json(tweetCreated);
+  });
 };
 
-module.exports = { list, create };
+const createComment = (req, res) => {
+  const { comment, tweetId, userId } = req.body;
+
+  const comments = {
+    comment,
+    user: userId,
+  };
+
+  Tweet.updateOne({ _id: tweetId }, { $addToSet: { comments } })
+    .then(() => {
+      res.status(200).json({ message: 'ok' });
+    })
+    .catch((error) => {
+      res.status(500).json({ message: 'not updated' });
+    });
+};
+
+const likes = (req, res) => {
+  const { like, tweetId } = req.body;
+
+  Tweet.updateOne({ _id: tweetId }, { $inc: { likes: 1 } })
+    .then(() => {
+      res.status(200).json({ message: 'ok' });
+    })
+    .catch((error) => {
+      res.status(500).json({ message: 'not updated' });
+    });
+};
+
+module.exports = { list, create, createComment, likes };

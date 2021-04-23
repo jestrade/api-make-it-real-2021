@@ -1,12 +1,11 @@
 const { locale } = require('../../locale');
 
 const usersAuthorization = (req, res, next) => {
-  const { username, authUsername } = req.body;
-  if (username === authUsername) {
-    next();
-  } else {
-    res.status(500).json({ message: locale.translate('errors.notAuthorized') });
-  }
+  next();
 };
 
-module.exports = { usersAuthorization };
+const tweetsAuthorization = (req, res, next) => {
+  next();
+};
+
+module.exports = { usersAuthorization, tweetsAuthorization };
