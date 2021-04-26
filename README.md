@@ -18,7 +18,7 @@ Make sure you have yarn installed, run on console.
 
 if it return an error, please install [yarn](https://yarnpkg.com/getting-started/install).
 
-```
+```sh
 > npm install -g yarn
 ```
 
@@ -96,7 +96,7 @@ Run project without nodemon
 
 ### With nodemon
 
-Run project without nodemon
+Run project with nodemon
 
 ```sh
 > yarn run dev
