@@ -63,14 +63,15 @@ Example connection string in cloud, more info [MondoDB Atlas](https://www.mongod
 mongodb+srv://<username>:<password>@cluster0.rwp0b.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 ```
 
-```bash
-HTTP_HOST=127.0.0.1
-HTTP_PORT=3000
-LOG_ACCESS=../logs/access.log
-JWTKEY=my-secret-key
-APIWEATHERKEY=
-DB_CONNECTION_STRING=
-SALT_ROUNDS=10
+```yaml
+env:
+  - HTTP_HOST=127.0.0.1
+  - HTTP_PORT=3000
+  - LOG_ACCESS=../logs/access.log
+  - JWTKEY=my-secret-key
+  - APIWEATHERKEY=
+  - DB_CONNECTION_STRING=
+  - SALT_ROUNDS=10
 ```
 
 ## Install nodemon as development dependency
