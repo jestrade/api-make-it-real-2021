@@ -80,9 +80,11 @@ const remove = async (req, res) => {
 
   const userDeleted = await User.deleteOne({ _id: userFind._id });
 
-  userDeleted.ok === 1
-    ? res.status(200).json( {message: locale.translate('errors.user.userDeleted') })
-    : res.status(500).json({ message: `${locale.translate('errors.user.onDelete')} ${username}` });
+  if (userDeleted.ok === 1) {
+    res.status(200).json( {message: locale.translate('errors.user.userDeleted') });
+  } else {
+    res.status(500).json({ message: `${locale.translate('errors.user.onDelete')} ${username}` });
+  }
 };
 
 const update = async (req, res) => {
@@ -105,9 +107,11 @@ const update = async (req, res) => {
       const userUpdated = await User.updateOne({ _id: userFind._id },
         { $set: { name: user.name, email: user.email, password: user.password } });
 
-      userUpdated.ok === 1 
-        ? res.status(204).json()
-        : res.status(500).json({ message: `${locale.translate('errors.user.onUpdate')} ${usernameParam}` });
+      if (userUpdated.ok === 1 ) {
+        res.status(204).json();
+      } else {
+        res.status(500).json({ message: `${locale.translate('errors.user.onUpdate')} ${usernameParam}` });
+      }
     } else {
       res.status(500).json({ message: `${locale.translate('errors.user.userNotExist')} ${usernameParam}` });
     }
