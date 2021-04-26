@@ -13,31 +13,31 @@
 Make sure you have yarn installed, run on console.
 
 ```sh
-yarn --version
+> yarn --version
 ```
 
 if it return an error, please install [yarn](https://yarnpkg.com/getting-started/install).
 
 ```
-npm install -g yarn
+> npm install -g yarn
 ```
 
 ## Clone the repo
 
 ```sh
-git clone https://github.com/jestrade/api-make-it-real-2021.git
+> git clone https://github.com/jestrade/api-make-it-real-2021.git
 ```
 
 ## Enter to folder project
 
 ```sh
-cd api-make-it-real-2021
+> cd api-make-it-real-2021
 ```
 
 ## Install the app
 
 ```sh
-yarn
+> yarn
 ```
 
 ## Create .env file
@@ -63,10 +63,12 @@ Example connection string in cloud, more info [MondoDB Atlas](https://www.mongod
 mongodb+srv://<username>:<password>@cluster0.rwp0b.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 ```
 
-Rename .env.example to .env, and set parameters required.
+Rename .env.example to .env, and set parameters required, please dont include `env:`.
 
 ```yaml
 env:
+
+# This is parameters required.
 HTTP_HOST=127.0.0.1
 HTTP_PORT=3000
 LOG_ACCESS=../logs/access.log
@@ -79,7 +81,7 @@ SALT_ROUNDS=10
 ## Install nodemon as development dependency
 
 ```sh
-yarn add -D nodemon
+> yarn add -D nodemon
 ```
 
 ## Run the app
@@ -89,7 +91,7 @@ yarn add -D nodemon
 Run project without nodemon
 
 ```sh
-yarn start
+> yarn start
 ```
 
 ### With nodemon
@@ -97,11 +99,11 @@ yarn start
 Run project without nodemon
 
 ```sh
-yarn run dev
+> yarn run dev
 ```
 
 ### Run tests
 
 ```sh
-yarn run test
+> yarn run test
 ```
