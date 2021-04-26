@@ -3,8 +3,8 @@
 ## Prerequisites
 
 - [Node](https://nodejs.org/)
-- NPM, built into Node
-- [yarn](https://yarnpkg.com/getting-started/install)
+- NPM, built into Node.
+- [Yarn](https://yarnpkg.com/getting-started/install)
 - [MongoDB](https://www.mongodb.com/try/download/community) or [MondoDB Atlas](https://www.mongodb.com/cloud/atlas2)
 - [Postman](https://www.postman.com/) or [Insomnia](https://insomnia.rest/) or any client api rest.
 
@@ -16,7 +16,7 @@ Make sure you have yarn installed, run on console.
 > yarn --version
 ```
 
-if it return an error, please install [yarn](https://yarnpkg.com/getting-started/install).
+If it return an error, please install [yarn](https://yarnpkg.com/getting-started/install).
 
 ```sh
 > npm install -g yarn
@@ -69,13 +69,13 @@ Rename .env.example to .env, and set parameters required, please dont include `e
 env:
 
 # This is parameters required.
-HTTP_HOST=127.0.0.1
-HTTP_PORT=3000
-LOG_ACCESS=../logs/access.log
-JWTKEY=my-secret-key
+HTTP_HOST=
+HTTP_PORT=
+LOG_ACCESS=
+JWTKEY=
 APIWEATHERKEY=
 DB_CONNECTION_STRING=
-SALT_ROUNDS=10
+SALT_ROUNDS=
 ```
 
 ## Install nodemon as development dependency
