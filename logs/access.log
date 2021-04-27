@@ -160,3 +160,4 @@
 ::1 - - [23/Apr/2021:00:37:22 +0000] "POST /api/tweets/comments HTTP/1.1" 200 16 "-" "PostmanRuntime/7.26.3"
 ::1 - - [23/Apr/2021:00:37:24 +0000] "GET /api/tweets HTTP/1.1" 200 788 "-" "PostmanRuntime/7.26.3"
 ::1 - - [23/Apr/2021:00:38:13 +0000] "GET /api/tweets HTTP/1.1" 200 808 "-" "PostmanRuntime/7.26.3"
+190.90.38.178 - - [27/Apr/2021:08:39:43 +0000] "GET /api/tweets HTTP/1.1" 200 70 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36"

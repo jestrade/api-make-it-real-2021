@@ -12,7 +12,7 @@ const weather = require('./weather/router');
 const { config } = require('../config');
 
 const router = express.Router();
-const accessLogDir = config.log.access;
+const accessLogDir = '../logs/' + config.log.access;
 const logStream = fs.createWriteStream(path.join(__dirname, accessLogDir), {
   flags: 'a',
 });
