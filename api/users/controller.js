@@ -15,7 +15,7 @@ const list = async (req, res) => {
     .sort({ createdAt: -1 })
     .then(async (users) => {
       const total = await User.estimatedDocumentCount();
-      const totalPages = Math.round(total / limit);
+      const totalPages = Math.ceil(total / limit);
       const hasMore = page < totalPages;
 
       res.status(200).json({
@@ -74,9 +74,64 @@ const login = async (req, res) => {
   }
 };
 
-const remove = (req, res) => {};
+const remove = async (req, res) => {
+  const { username } = req.body;
+  const userFind = await findUserByUsername(username);
 
-const update = (req, res) => {};
+  const userDeleted = await User.deleteOne({ _id: userFind._id });
+
+  if (userDeleted.ok === 1) {
+    res.status(200).json( {message: locale.translate('errors.user.userDeleted') });
+  } else {
+    res.status(500).json({ message: `${locale.translate('errors.user.onDelete')} ${username}` });
+  }
+};
+
+const update = async (req, res) => {
+  const usernameParam = req.params.username;
+  const {
+    name, email, username, password,
+  } = req.body;
+
+  if (name && email && username && password) {
+    const user = {
+      name,
+      email,
+      username,
+      password,
+    };
+
+    const userFind = await findUserByUsername(usernameParam);
+
+    if (userFind) {
+      const userUpdated = await User.updateOne({ _id: userFind._id },
+        { $set: { name: user.name, email: user.email, password: user.password } });
+
+      if (userUpdated.ok === 1 ) {
+        res.status(204).json();
+      } else {
+        res.status(500).json({ message: `${locale.translate('errors.user.onUpdate')} ${usernameParam}` });
+      }
+    } else {
+      res.status(500).json({ message: `${locale.translate('errors.user.userNotExist')} ${usernameParam}` });
+    }
+  } else {
+    res.status(500).json({ message: locale.translate('errors.invalidData') });
+  }
+};
+
+//Find User By Username
+const findUserByUsername = async (username) => {
+  const userFound = await User.findOne({ username })
+                              .then(user =>{
+                                  return user;
+                              })
+                              .catch( err => {
+                                  console.error(err);
+                              });
+
+  return userFound;
+};
 
 module.exports = {
   list,
