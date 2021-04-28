@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const { config } = require('../config');
+const mongoose = require("mongoose");
+const { config } = require("../config");
 
 const init = async () => {
   const options = {
@@ -11,12 +11,16 @@ const init = async () => {
 
   try {
     await mongoose.connect(config.database.connectionString, options);
-    console.log('Connected to the database sucessfully!');
+    /* eslint-disable no-console */
+    console.log("Connected to the database sucessfully!");
+    /* eslint-disable no-console */
   } catch (err) {
+    /* eslint-disable no-console */
     console.error(
       `Error connecting to database ->`,
       `Error code: ${err.code}, error reference: ${err.codeName}, message: ${err.message}`
     );
+    /* eslint-disable no-console */
   }
 };
 

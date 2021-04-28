@@ -5,7 +5,7 @@ dotenv.config();
 const config = {
   http: {
     host: process.env.HTTP_HOST || "0.0.0.0",
-    port: process.env.HTTP_PORT,
+    port: process.env.HTTP_PORT || 3000,
   },
   log: {
     access: "../logs/" + process.env.LOG_ACCESS,
