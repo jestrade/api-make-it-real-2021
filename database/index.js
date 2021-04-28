@@ -8,11 +8,16 @@ const init = async () => {
     useFindAndModify: false,
     useCreateIndex: true,
   };
-  await mongoose.connect(config.database.connectionString, options, () => {
-    /* eslint-disable no-console */
-    console.log('connected to the database');
-    /* eslint-enable no-console */
-  });
+
+  try {
+    await mongoose.connect(config.database.connectionString, options);
+    console.log('Connected to the database sucessfully!');
+  } catch (err) {
+    console.error(
+      `Error connecting to database ->`,
+      `Error code: ${err.code}, error reference: ${err.codeName}, message: ${err.message}`
+    );
+  }
 };
 
 module.exports = { init };

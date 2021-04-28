@@ -45,7 +45,7 @@ If it return an error, please install [yarn](https://yarnpkg.com/getting-started
 - Configuration Example:
   - HTTP_HOST -> IP of server, default is 127.0.0.1.
   - HTTP_PORT -> Node listening port, default is 3000.
-  - LOG_ACCESS -> Path where the logs will be stored.
+  - LOG_ACCESS -> Path where the logs will be stored, don't specify the path, just the file name, default `access.log`.
   - JWTKEY -> Is used by [JWT](https://www.npmjs.com/package/jsonwebtoken) to sign the token.
   - APIWEATHERKEY -> Is used to consume the [API](https://openweathermap.org/api).
   - DB_CONNECTION_STRING -> Connection string to connect [mongodb](https://mongoosejs.com/docs/connections.html) database

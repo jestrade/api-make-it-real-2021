@@ -1,13 +1,14 @@
-const dotenv = require('dotenv');
+const dotenv = require("dotenv");
 
 dotenv.config();
 
 const config = {
   http: {
+    host: process.env.HTTP_HOST || "0.0.0.0",
     port: process.env.HTTP_PORT,
   },
   log: {
-    access: process.env.LOG_ACCESS,
+    access: "../logs/" + process.env.LOG_ACCESS,
   },
   jwtKey: process.env.JWTKEY,
   apiWeatherKey: process.env.APIWEATHERKEY,
