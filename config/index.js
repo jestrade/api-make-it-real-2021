@@ -4,7 +4,7 @@ dotenv.config();
 
 const config = {
   http: {
-    host: process.env.HTTP_HOST,
+    host: process.env.HTTP_HOST || "0.0.0.0",
     port: process.env.HTTP_PORT,
   },
   log: {
