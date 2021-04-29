@@ -9,10 +9,16 @@ const dictionaryESCO = {
       onCreate: "error al intentar crear el usuario",
       onDelete: "error al intentar eliminar el usuario",
     },
+    tweet: {
+      onDelete: "error al intentar eliminar el tweet",
+    },
   },
   success: {
     user: {
       userDeleted: "usuario eliminado correctamente",
+    },
+    tweet: {
+      tweetDeleted: "tweet eliminado correctamente",
     },
   },
 };

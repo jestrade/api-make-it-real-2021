@@ -1,5 +1,6 @@
 node_modules/
-logs/*.log
+**/*.log
+*.log
 **/.env
 .DS_Store
 .thumbs

@@ -9,10 +9,16 @@ const dictionaryENUS = {
       onCreate: "error while creating user",
       onDelete: "error while deleted user",
     },
+    tweet: {
+      onDelete: "error while deleted tweet",
+    },
   },
   success: {
     user: {
       userDeleted: "user successfully removed",
+    },
+    tweet: {
+      tweetDeleted: "tweet successfully removed",
     },
   },
 };

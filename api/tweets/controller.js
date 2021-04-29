@@ -1,3 +1,4 @@
+const { locale } = require("../../locale");
 const Tweet = require("./model");
 
 const list = (req, res) => {
@@ -68,4 +69,19 @@ const likes = (req, res) => {
     });
 };
 
-module.exports = { list, create, createComment, likes };
+const remove = async (req, res) => {
+  const tweetId = req.body.tweetId;
+  const tweetDeleted = await Tweet.deleteOne({ _id: tweetId });
+
+  if (tweetDeleted.ok === 1) {
+    res
+      .status(200)
+      .json({ message: `${locale.translate("success.tweet.tweetDeleted")}` });
+  } else {
+    res.status(500).json({
+      message: `${locale.translate("errors.tweet.onDelete")} ${username}`,
+    });
+  }
+};
+
+module.exports = { list, create, createComment, likes, remove };

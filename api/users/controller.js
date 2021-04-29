@@ -77,16 +77,15 @@ const login = async (req, res) => {
 const remove = async (req, res) => {
   const { username } = req.body;
   const userFind = await findUserByUsername(username);
-
   const userDeleted = await User.deleteOne({ _id: userFind._id });
-  console.log("aca");
+
   if (userDeleted.ok === 1) {
     res
       .status(200)
-      .json({ message: `${locale.translate("success.user.userDeleted")}` });
+      .json({ message: `${locale.translate("success.tweet.tweetDeleted")}` });
   } else {
     res.status(500).json({
-      message: `${locale.translate("errors.user.onDelete")} ${username}`,
+      message: `${locale.translate("errors.tweet.onDelete")} ${username}`,
     });
   }
 };
