@@ -2,7 +2,7 @@ const { locale } = require("../../locale");
 const { isAdmin } = require("../../services/userService");
 const User = require("../users/model");
 
-const usersRemove = async (req, res, next) => {
+const usersAuth = async (req, res, next) => {
   const { userId, username } = req.body;
   const user = await User.findOne({ username });
   const isAdminValidation = await isAdmin(userId);
@@ -28,4 +28,4 @@ const tweetsAuthorization = (req, res, next) => {
   next();
 };
 
-module.exports = { usersRemove, tweetsAuthorization };
+module.exports = { usersAuth, tweetsAuthorization };
