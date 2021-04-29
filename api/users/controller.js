@@ -79,11 +79,11 @@ const remove = async (req, res) => {
   const userFind = await findUserByUsername(username);
 
   const userDeleted = await User.deleteOne({ _id: userFind._id });
-
+  console.log("aca");
   if (userDeleted.ok === 1) {
     res
       .status(200)
-      .json({ message: locale.translate("errors.user.userDeleted") });
+      .json({ message: `${locale.translate("success.user.userDeleted")}` });
   } else {
     res.status(500).json({
       message: `${locale.translate("errors.user.onDelete")} ${username}`,

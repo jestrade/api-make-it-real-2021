@@ -1,12 +1,12 @@
-const Tweet = require('./model');
+const Tweet = require("./model");
 
 const list = (req, res) => {
   const { page = 1, limit = 10 } = req.query;
   const skip = (page - 1) * limit;
 
-  Tweet.find({}, ['content', 'comments', 'likes', 'user', 'createdAt'])
-    .populate('user', ['name', 'username'])
-    .populate('comments.user', ['name', 'username'])
+  Tweet.find({}, ["content", "comments", "likes", "user", "createdAt"])
+    .populate("user", ["name", "username"])
+    .populate("comments.user", ["name", "username"])
     .limit(Number(limit))
     .skip(skip)
     .sort({ createdAt: -1 })
@@ -49,10 +49,10 @@ const createComment = (req, res) => {
 
   Tweet.updateOne({ _id: tweetId }, { $addToSet: { comments } })
     .then(() => {
-      res.status(200).json({ message: 'ok' });
+      res.status(200).json({ message: "ok" });
     })
     .catch((error) => {
-      res.status(500).json({ message: 'not updated' });
+      res.status(500).json({ message: "not updated" });
     });
 };
 
@@ -61,10 +61,10 @@ const likes = (req, res) => {
 
   Tweet.updateOne({ _id: tweetId }, { $inc: { likes: 1 } })
     .then(() => {
-      res.status(200).json({ message: 'ok' });
+      res.status(200).json({ message: "ok" });
     })
     .catch((error) => {
-      res.status(500).json({ message: 'not updated' });
+      res.status(500).json({ message: "not updated" });
     });
 };
 
