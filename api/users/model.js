@@ -1,9 +1,9 @@
-const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
+const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 
-const { config } = require('../../config');
+const { config } = require("../../config");
 
-const collection = 'users';
+const collection = "users";
 
 const objectSchema = {
   name: { type: String, required: true },
@@ -13,6 +13,7 @@ const objectSchema = {
     lowercase: true,
     trim: true,
   },
+  role: { type: String, default: "registered", required: true },
   email: { type: String, required: true },
   password: { type: String, required: true },
   active: { type: Boolean, required: true, default: true },
@@ -24,8 +25,8 @@ const options = {
 
 const schema = new mongoose.Schema(objectSchema, options);
 
-schema.pre('updateOne', function (next) {
-  const data = this.getUpdate()['$set'];
+schema.pre("updateOne", function (next) {
+  const data = this.getUpdate()["$set"];
 
   bcrypt.hash(data.password, config.saltRounds, (err, hash) => {
     if (err) {
