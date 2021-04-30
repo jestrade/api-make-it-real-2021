@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Twitter</title>
+    <script src="main.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body onload="init()">
+    <h1>Twitter</h1>
+    <main>
+      <div id="private">
+        <div>
+          <p id="welcome"></p>
+          <button type="button" onclick="logout()">Logout</button>
+        </div>
+        <h2>Tweets</h2>
+        <div id="tweets"></div>
+      </div>
+      <div id="public">
+        <div id="message"></div>
+        <h2>Login</h2>
+        <form>
+          <p>
+            <label>
+              <input id="login_username" type="text" placeholder="username" />
+            </label>
+          </p>
+          <p>
+            <label>
+              <input
+                id="login_password"
+                type="password"
+                placeholder="password"
+              />
+            </label>
+          </p>
+          <p>
+            <button type="button" onclick="login()">Login</button>
+          </p>
+        </form>
+        <h2>Sign Up</h2>
+        <form>
+          <p>
+            <label>
+              <input id="signup_name" type="text" placeholder="name" />
+            </label>
+          </p>
+          <p>
+            <label>
+              <input id="signup_username" type="text" placeholder="username" />
+            </label>
+          </p>
+          <p>
+            <label>
+              <input
+                id="signup_email"
+                type="email"
+                placeholder="email@email.com"
+              />
+            </label>
+          </p>
+          <p>
+            <label>
+              <input
+                id="signup_password"
+                type="password"
+                placeholder="password"
+              />
+            </label>
+          </p>
+          <p>
+            <label>
+              <input
+                id="signup_passwordConfirmation"
+                type="password"
+                placeholder="password confirmation"
+              />
+            </label>
+          </p>
+          <p>
+            <button type="button" onclick="createUser()">Create user</button>
+          </p>
+        </form>
+      </div>
+    </main>
+  </body>
+</html>

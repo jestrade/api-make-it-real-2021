@@ -22,7 +22,7 @@ const list = async (req, res) => {
         hasMore,
         totalPages,
         total,
-        users,
+        data: users,
         currentPage: page,
       });
     });
@@ -65,7 +65,17 @@ const login = async (req, res) => {
     const result = await bcrypt.compare(password, foundUser.password);
     if (result) {
       const token = jwt.sign({ userId }, config.jwtKey);
-      res.status(200).json({ token });
+
+      res
+        .status(200)
+        .cookie("token", token, { maxAge: 60 * 60 * 24 * 1000, httpOnly: true })
+        .json({
+          data: {
+            username: foundUser.username,
+            name: foundUser.name,
+          },
+          message: "ok",
+        });
     } else {
       res.json({ message: locale.translate("errors.user.userNotExists") });
     }
@@ -92,6 +102,7 @@ const remove = async (req, res) => {
 };
 
 const update = async (req, res) => {
+
   const idParam = req.params.id;
   const { name, email, username, password } = req.body;
 
@@ -149,10 +160,15 @@ const findUserByUsername = async (username) => {
   return userFound;
 };
 
+const logout = (req, res) => {
+  res.clearCookie("token").json({ message: "ok" });
+};
+
 module.exports = {
   list,
   create,
   update,
-  login,
   remove,
+  login,
+  logout,
 };
