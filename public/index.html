@@ -7,40 +7,73 @@
     <script src="main.js"></script>
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body onload="loadTweets()">
+  <body onload="init()">
     <h1>Twitter</h1>
     <main>
-      <div>
+      <div id="private">
+        <div>
+          <p id="welcome"></p>
+          <button type="button" onclick="logout()">Logout</button>
+        </div>
         <h2>Tweets</h2>
         <div id="tweets"></div>
       </div>
-      <div>
-        <h2>Sign Up</h2>
+      <div id="public">
+        <div id="message"></div>
+        <h2>Login</h2>
         <form>
           <p>
             <label>
-              <input id="name" type="text" placeholder="name" />
-            </label>
-          </p>
-          <p>
-            <label>
-              <input id="username" type="text" placeholder="username" />
-            </label>
-          </p>
-          <p>
-            <label>
-              <input id="email" type="email" placeholder="email@email.com" />
-            </label>
-          </p>
-          <p>
-            <label>
-              <input id="password" type="password" placeholder="password" />
+              <input id="login_username" type="text" placeholder="username" />
             </label>
           </p>
           <p>
             <label>
               <input
-                id="passwordConfirmation"
+                id="login_password"
+                type="password"
+                placeholder="password"
+              />
+            </label>
+          </p>
+          <p>
+            <button type="button" onclick="login()">Login</button>
+          </p>
+        </form>
+        <h2>Sign Up</h2>
+        <form>
+          <p>
+            <label>
+              <input id="signup_name" type="text" placeholder="name" />
+            </label>
+          </p>
+          <p>
+            <label>
+              <input id="signup_username" type="text" placeholder="username" />
+            </label>
+          </p>
+          <p>
+            <label>
+              <input
+                id="signup_email"
+                type="email"
+                placeholder="email@email.com"
+              />
+            </label>
+          </p>
+          <p>
+            <label>
+              <input
+                id="signup_password"
+                type="password"
+                placeholder="password"
+              />
+            </label>
+          </p>
+          <p>
+            <label>
+              <input
+                id="signup_passwordConfirmation"
                 type="password"
                 placeholder="password confirmation"
               />
