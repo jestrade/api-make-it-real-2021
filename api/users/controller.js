@@ -157,10 +157,15 @@ const findUserByUsername = async (username) => {
   return userFound;
 };
 
+const logout = (req, res) => {
+  res.clearCookie("token").json({ message: "ok" });
+};
+
 module.exports = {
   list,
   create,
   update,
-  login,
   remove,
+  login,
+  logout,
 };
