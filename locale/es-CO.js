@@ -6,6 +6,7 @@ const dictionaryESCO = {
     user: {
       userDeleted: "el usuario ha sido eliminado",
       onDelete: "error mientras se eliminaba el usuario",
+      userUpdated: "el usuario ha sido actualizado",
     },
   },
 };

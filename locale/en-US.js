@@ -9,6 +9,7 @@ const dictionaryENUS = {
       onCreate: "error while creating user",
       userDeleted: "user has been deleted",
       onDelete: "error while deleting the user",
+      userUpdated: "user has been updated",
     },
   },
 };

@@ -9,13 +9,7 @@ const list = async (req, res) => {
   const { page = 1, limit = 10 } = req.query;
   const skip = (page - 1) * limit;
 
-  User.find({ active: true }, [
-    "name",
-    "username",
-    "createdAt",
-    "updatedAt",
-    "role",
-  ])
+  User.find({ active: true }, ["name", "username", "createdAt", "updatedAt"])
     .limit(Number(limit))
     .skip(skip)
     .sort({ createdAt: -1 })
@@ -81,8 +75,8 @@ const login = async (req, res) => {
 };
 
 const remove = async (req, res) => {
-  const { username } = req.body;
-  const userFind = await findUserByUsername(username);
+  const { id } = req.body;
+  const userFind = await User.findOne({ _id: id });
 
   const userDeleted = await User.deleteOne({ _id: userFind._id });
 
@@ -98,7 +92,7 @@ const remove = async (req, res) => {
 };
 
 const update = async (req, res) => {
-  const usernameParam = req.params.username;
+  const idParam = req.params.id;
   const { name, email, username, password } = req.body;
 
   if (name && email && username && password) {
@@ -109,7 +103,7 @@ const update = async (req, res) => {
       password,
     };
 
-    const userFind = await findUserByUsername(usernameParam);
+    const userFind = await User.findOne({ _id: idParam });
 
     if (userFind) {
       const userUpdated = await User.updateOne(
@@ -120,7 +114,9 @@ const update = async (req, res) => {
       );
 
       if (userUpdated.ok === 1) {
-        res.status(204).json();
+        res.status(204).json({
+          message: locale.translate("errors.user.userUpdated"),
+        });
       } else {
         res.status(500).json({
           message: `${locale.translate(
