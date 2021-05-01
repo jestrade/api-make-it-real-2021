@@ -113,3 +113,280 @@ Run project with nodemon
 ```sh
 > yarn run test
 ```
+
+## API
+
+<table>
+  <tr>
+   <td>
+   </td>
+   <td colspan="4" ><strong>Methods</strong>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>URL</strong>
+   </td>
+   <td><strong>GET</strong>
+   </td>
+   <td><strong>POST</strong>
+   </td>
+   <td><strong>PUT</strong>
+   </td>
+   <td><strong>DELETE</strong>
+   </td>
+  </tr>
+  <tr>
+   <td>/
+   </td>
+   <td>Display “hello world” message
+<p>
+<strong><code>public</code></strong>
+   </td>
+   <td>error
+   </td>
+   <td>error
+   </td>
+   <td>error
+   </td>
+  </tr>
+  <tr>
+   <td>/users
+   </td>
+   <td>List all users
+<p>
+<strong><code>public</code></strong>
+   </td>
+   <td>Create user
+<p>
+body:
+<p>
+<code>{</code>
+<p>
+<code>name,</code>
+<p>
+<code>email,</code>
+<p>
+<code>username,</code>
+<p>
+<code>password</code>
+<p>
+<code>}</code>
+<p>
+<strong><code>public</code></strong>
+   </td>
+   <td>error
+   </td>
+   <td>Delete user
+<p>
+body:
+<p>
+<code>{</code>
+<p>
+<code>id</code>
+<p>
+<code>}</code>
+<p>
+<strong><code>private:</code></strong>
+<strong><code>
+- Authentication \
+- Authorization</code></strong>
+   </td>
+  </tr>
+  <tr>
+   <td>/users<strong>/:id</strong>
+   </td>
+   <td>Display user information: id
+<p>
+<strong><code>public</code></strong>
+   </td>
+   <td>error
+   </td>
+   <td>Update user: id
+<p>
+<code>{</code>
+<p>
+<code>name,</code>
+<p>
+<code>email,</code>
+<p>
+<code>password</code>
+<p>
+<code>}</code>
+<p>
+<strong><code>private:</code></strong>
+<strong><code>
+- Authentication \
+- Authorization</code></strong>
+   </td>
+   <td>error
+   </td>
+  </tr>
+  <tr>
+   <td>/users/login
+   </td>
+   <td>error
+   </td>
+   <td>Authenticate user
+<p>
+<code>{</code>
+<p>
+<code>username,</code>
+<p>
+<code>password</code>
+<p>
+<code>}</code>
+<p>
+<strong><code>public</code></strong>
+   </td>
+   <td>error
+   </td>
+   <td>error
+   </td>
+  </tr>
+  <tr>
+   <td>/tweets
+   </td>
+   <td>List all tweets
+<p>
+<strong><code>private:</code></strong>
+<strong><code>
+- Authentication</code></strong>
+   </td>
+   <td>Create tweet
+<p>
+body:
+<p>
+<code>{</code>
+<p>
+<code>content</code>
+<p>
+<code>}</code>
+<p>
+<strong><code>private</code></strong>
+   </td>
+   <td>error
+   </td>
+   <td>Delete tweet
+<p>
+body:
+<p>
+<code>{</code>
+<p>
+<code>tweetId</code>
+<p>
+<code>}</code>
+<p>
+<strong><code>private:</code></strong>
+<strong><code>
+- Authentication \
+- Authorization</code></strong>
+   </td>
+  </tr>
+  <tr>
+   <td>/tweets/:id
+   </td>
+   <td>List tweet info and comments
+<p>
+<strong><code>public</code></strong>
+   </td>
+   <td>error
+   </td>
+   <td>error
+   </td>
+   <td>error
+   </td>
+  </tr>
+  <tr>
+   <td>/tweets/comments
+   </td>
+   <td>error
+   </td>
+   <td>Create tweet
+<p>
+body:
+<p>
+<code>{</code>
+<p>
+<code>comment,</code>
+<p>
+<code>tweetId,</code>
+<p>
+<code>}</code>
+<p>
+<strong><code>private</code></strong>
+   </td>
+   <td>error
+   </td>
+   <td>Delete tweet
+<p>
+body:
+<p>
+<code>{</code>
+<p>
+<code>tweetId,</code>
+<p>
+<code>commentId</code>
+<p>
+<code>}</code>
+<p>
+<strong><code>private:</code></strong>
+<strong><code>
+- Authentication \
+- Authorization</code></strong>
+   </td>
+  </tr>
+  <tr>
+   <td>/tweets/likes
+   </td>
+   <td>error
+   </td>
+   <td>error
+   </td>
+   <td>Create tweet
+<p>
+body:
+<p>
+<code>{</code>
+<p>
+<code>like(1|0),</code>
+<p>
+<code>tweetId,</code>
+<p>
+<code>}</code>
+<p>
+<code>1: like</code>
+<p>
+<code>0: unlike</code>
+<p>
+<strong><code>private</code></strong>
+   </td>
+   <td>error
+   </td>
+  </tr>
+  <tr>
+   <td>/tweets/comments/:id
+   </td>
+   <td>
+   </td>
+   <td>error
+   </td>
+   <td>
+   </td>
+   <td>error
+   </td>
+  </tr>
+  <tr>
+   <td>/weather/:city
+   </td>
+   <td>Get weather from city
+<p>
+<strong><code>public</code></strong>
+   </td>
+   <td>error
+   </td>
+   <td>error
+   </td>
+   <td>error
+   </td>
+  </tr>
+</table>
