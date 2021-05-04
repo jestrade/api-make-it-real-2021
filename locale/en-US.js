@@ -3,6 +3,15 @@ const dictionaryENUS = {
     notAuthorized: "unauthorized",
     notAuthenticated: "user not authorized",
     invalidData: "invalid data",
+    validate: {
+      maxCharactersAllowed: "max characters exceeded",
+      emptyData: "empty data",
+      invalidUsername: "invalid username",
+      invalidName: "invalid name",
+      invalidEmail: "invalid email",
+      passwordsDontMatch: "passwords don't match",
+      invalidPassword: "invalid password",
+    },
     user: {
       userExists: "user already exists",
       userNotExists: "user not exists",

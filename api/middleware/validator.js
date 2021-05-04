@@ -1,13 +1,15 @@
+const { locale } = require("../../locale");
+
 const validateTweet = (req, res, next) => {
   const { content } = req.body;
   const errors = [];
 
   if (content) {
     if (content.length > 280) {
-      errors.push("max characters exceded");
+      errors.push(locale.translate("errors.validate.maxCharactersAllowed"));
     }
   } else {
-    errors.push("empty data");
+    errors.push(locale.translate("errors.validate.emptyData"));
   }
   if (errors.length === 0) {
     next();
@@ -22,10 +24,10 @@ const validateComment = (req, res, next) => {
 
   if (comment && tweetId) {
     if (comment.length > 280) {
-      errors.push("max characters exceded");
+      errors.push(locale.translate("errors.validate.maxCharactersAllowed"));
     }
   } else {
-    errors.push("empty data");
+    errors.push(locale.translate("errors.validate.emptyData"));
   }
   if (errors.length === 0) {
     next();
@@ -40,10 +42,10 @@ const validateLogin = (req, res, next) => {
 
   if (username && password) {
     if (username.length < 6) {
-      errors.push("invalid username");
+      errors.push(locale.translate("errors.validate.invalidUsername"));
     }
   } else {
-    errors.push("empty data");
+    errors.push(locale.translate("errors.validate.emptyData"));
   }
   if (errors.length === 0) {
     next();
@@ -62,26 +64,26 @@ const validateUser = (req, res, next) => {
 
   if (name && email && username && password && passwordConfirmation) {
     if (name.length < 3) {
-      errors.push("invalid name");
+      errors.push(locale.translate("errors.validate.invalidName"));
     }
 
     if (username.length < 6) {
-      errors.push("invalid username");
+      errors.push(locale.translate("errors.validate.invalidUsername"));
     }
 
     if (!regExpEmail.test(email)) {
-      errors.push("invalid email");
+      errors.push(locale.translate("errors.validate.invalidEmail"));
     }
 
     if (password !== passwordConfirmation) {
-      errors.push("passwords don't match");
+      errors.push(locale.translate("errors.validate.passwordsDontMatch"));
     }
 
     if (!regExpPassword.test(password)) {
-      errors.push("invalid password");
+      errors.push(locale.translate("errors.validate.invalidPassword"));
     }
   } else {
-    errors.push("empty data");
+    errors.push(locale.translate("errors.validate.emptyData"));
   }
 
   if (errors.length === 0) {
