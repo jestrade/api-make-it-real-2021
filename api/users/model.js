@@ -37,6 +37,14 @@ schema.pre("updateOne", function (next) {
   });
 });
 
+schema.pre("save", function (next) {
+  const salt = bcrypt.genSaltSync(config.saltRounds);
+  const passwordHash = bcrypt.hashSync(this.password, salt);
+
+  this.password = passwordHash;
+  next();
+});
+
 const User = mongoose.model(collection, schema);
 
 module.exports = User;

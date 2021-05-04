@@ -40,14 +40,11 @@ const create = async (req, res) => {
     return;
   }
 
-  const salt = bcrypt.genSaltSync(config.saltRounds);
-  const passwordHash = bcrypt.hashSync(password, salt);
-
   const user = {
     name,
     email,
     username,
-    password: passwordHash,
+    password,
   };
 
   const newUser = new User(user);
