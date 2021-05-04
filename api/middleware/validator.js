@@ -4,10 +4,10 @@ const validateTweet = (req, res, next) => {
 
   if (content) {
     if (content.length > 280) {
-      errors.push('max characters exceded');
+      errors.push("max characters exceded");
     }
   } else {
-    errors.push('empty data');
+    errors.push("empty data");
   }
   if (errors.length === 0) {
     next();
@@ -22,10 +22,10 @@ const validateComment = (req, res, next) => {
 
   if (comment && tweetId) {
     if (comment.length > 280) {
-      errors.push('max characters exceded');
+      errors.push("max characters exceded");
     }
   } else {
-    errors.push('empty data');
+    errors.push("empty data");
   }
   if (errors.length === 0) {
     next();
@@ -40,10 +40,10 @@ const validateLogin = (req, res, next) => {
 
   if (username && password) {
     if (username.length < 6) {
-      errors.push('invalid username');
+      errors.push("invalid username");
     }
   } else {
-    errors.push('empty data');
+    errors.push("empty data");
   }
   if (errors.length === 0) {
     next();
@@ -62,15 +62,15 @@ const validateUser = (req, res, next) => {
 
   if (name && email && username && password && passwordConfirmation) {
     if (name.length < 3) {
-      errors.push('invalid name');
+      errors.push("invalid name");
     }
 
     if (username.length < 6) {
-      errors.push('invalid username');
+      errors.push("invalid username");
     }
 
     if (!regExpEmail.test(email)) {
-      errors.push('invalid email');
+      errors.push("invalid email");
     }
 
     if (password !== passwordConfirmation) {
@@ -78,10 +78,10 @@ const validateUser = (req, res, next) => {
     }
 
     if (!regExpPassword.test(password)) {
-      errors.push('invalid password');
+      errors.push("invalid password");
     }
   } else {
-    errors.status(500).push('empty data');
+    errors.push("empty data");
   }
 
   if (errors.length === 0) {
