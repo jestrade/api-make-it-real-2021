@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const { findUserById } = require("../services/userService");
 const { locale } = require("../../locale");
 const { config } = require("../../config");
 
@@ -73,6 +74,7 @@ const login = async (req, res) => {
           data: {
             username: foundUser.username,
             name: foundUser.name,
+            token: token,
           },
           message: "ok",
         });
@@ -84,25 +86,8 @@ const login = async (req, res) => {
   }
 };
 
-const remove = async (req, res) => {
-  const { username } = req.body;
-  const userFind = await findUserByUsername(username);
-
-  const userDeleted = await User.deleteOne({ _id: userFind._id });
-
-  if (userDeleted.ok === 1) {
-    res
-      .status(200)
-      .json({ message: locale.translate("errors.user.userDeleted") });
-  } else {
-    res.status(500).json({
-      message: `${locale.translate("errors.user.onDelete")} ${username}`,
-    });
-  }
-};
-
 const update = async (req, res) => {
-  const usernameParam = req.params.username;
+  const id = req.params.id;
   const { name, email, username, password } = req.body;
 
   if (name && email && username && password) {
@@ -113,7 +98,7 @@ const update = async (req, res) => {
       password,
     };
 
-    const userFind = await findUserByUsername(usernameParam);
+    const userFind = await findUserById(id);
 
     if (userFind) {
       const userUpdated = await User.updateOne(
@@ -124,19 +109,17 @@ const update = async (req, res) => {
       );
 
       if (userUpdated.ok === 1) {
-        res.status(204).json();
+        res.status(204).json({
+          message: locale.translate("success.user.onUpdate"),
+        });
       } else {
         res.status(500).json({
-          message: `${locale.translate(
-            "errors.user.onUpdate"
-          )} ${usernameParam}`,
+          message: `${locale.translate("errors.user.onUpdate")} ${id}`,
         });
       }
     } else {
       res.status(500).json({
-        message: `${locale.translate(
-          "errors.user.userNotExist"
-        )} ${usernameParam}`,
+        message: `${locale.translate("errors.user.userNotExists")} ${id}`,
       });
     }
   } else {
@@ -144,17 +127,28 @@ const update = async (req, res) => {
   }
 };
 
-//Find User By Username
-const findUserByUsername = async (username) => {
-  const userFound = await User.findOne({ username })
-    .then((user) => {
-      return user;
-    })
-    .catch((err) => {
-      console.error(err);
-    });
+const remove = async (req, res) => {
+  const { id } = req.body;
 
-  return userFound;
+  await User.findOneAndDelete({ _id: { $eq: id } }, (err, docs) => {
+    if (err) {
+      res.status(500).json({
+        message: `${locale.translate("errors.user.onDelete")} ${
+          userFind.username
+        }`,
+      });
+    } else if (docs === null) {
+      console.log("usuario no existe!");
+      res
+        .status(400)
+        .json({ message: locale.translate("errors.user.userNotExists") });
+    } else {
+      console.log("Borrado correctamente");
+      res
+        .status(200)
+        .json({ message: locale.translate("success.user.onDelete") });
+    }
+  });
 };
 
 const logout = (req, res) => {

@@ -20,7 +20,7 @@ router.route("/login").post(validateLogin, login);
 router.route("/logout").get(logout);
 
 router
-  .route("/:username") //
-  .put(authenticator, usersAuthorization, update);
+  .route("/:id") //
+  .put(authenticator, usersAuthorization, validateUser, update);
 
 module.exports = router;
