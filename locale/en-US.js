@@ -3,6 +3,7 @@ const dictionaryENUS = {
     notAuthorized: "unauthorized",
     notAuthenticated: "user not authorized",
     invalidData: "invalid data",
+    operationNotAllowed: "Operation not allowed",
     validate: {
       maxCharactersAllowed: "max characters exceeded",
       emptyData: "empty data",
@@ -11,10 +12,12 @@ const dictionaryENUS = {
       invalidEmail: "invalid email",
       passwordsDontMatch: "passwords don't match",
       invalidPassword: "invalid password",
+      invalidRole: "invalid role",
     },
     user: {
       userExists: "user already exists",
       userNotExists: "user not exists",
+      onUpdate: "error while updating user",
       onCreate: "error while creating user",
       onDelete: "error while deleted user",
     },
@@ -24,9 +27,10 @@ const dictionaryENUS = {
   },
   success: {
     user: {
+      onUpdate: "user updated successfully",
       onCreate: "user created successfully",
       onUpdate: "user updated successfully",
-      userDeleted: "user removed successfully",
+      onDelete: "user removed successfully",
     },
     tweet: {
       onCreate: "tweet created successfully",

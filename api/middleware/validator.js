@@ -55,14 +55,23 @@ const validateLogin = (req, res, next) => {
 };
 
 const validateUser = (req, res, next) => {
-  const { name, email, username, password, passwordConfirmation } = req.body;
+  const {
+    name,
+    email,
+    username,
+    password,
+    passwordConfirmation,
+    role = "registered",
+  } = req.body;
+
   const errors = [];
   const regExpEmail = new RegExp(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/);
   const regExpPassword = new RegExp(
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/
   );
+  const regExpRole = new RegExp(/^(admin|registered)$/);
 
-  if (name && email && username && password && passwordConfirmation) {
+  if (name && email && username && password && passwordConfirmation && role) {
     if (name.length < 3) {
       errors.push(locale.translate("errors.validate.invalidName"));
     }
@@ -81,6 +90,10 @@ const validateUser = (req, res, next) => {
 
     if (!regExpPassword.test(password)) {
       errors.push(locale.translate("errors.validate.invalidPassword"));
+    }
+
+    if (!regExpRole.test(role)) {
+      errors.push("errors.validate.invalidRole");
     }
   } else {
     errors.push(locale.translate("errors.validate.emptyData"));
