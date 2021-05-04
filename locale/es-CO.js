@@ -3,6 +3,15 @@ const dictionaryESCO = {
     notAuthorized: "no autorizado",
     notAuthenticated: "no autenticado",
     invalidData: "datos no válidos",
+    validate: {
+      maxCharactersAllowed: "se excedió el máximo de caracteres",
+      emptyData: "datos vacíos",
+      invalidUsername: "nombre de usuario no válido",
+      invalidName: "nombre inválido",
+      invalidEmail: "email inválido",
+      passwordsDontMatch: "las contraseñas no coinciden",
+      invalidPassword: "contraseña invalida",
+    },
     user: {
       userExists: "usuario actualmente existe",
       userNotExists: "usuario no existe",
