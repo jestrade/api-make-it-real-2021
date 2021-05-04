@@ -16,6 +16,7 @@ const objectSchema = {
   email: { type: String, required: true },
   password: { type: String, required: true },
   active: { type: Boolean, required: true, default: true },
+  role: { type: String, required: true, default: "registered" },
 };
 
 const options = {
