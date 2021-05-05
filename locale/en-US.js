@@ -23,6 +23,7 @@ const dictionaryENUS = {
     },
     tweet: {
       onDelete: "error while deleted tweet",
+      tweetNotExists: "tweet not exists",
     },
   },
   success: {
@@ -35,7 +36,7 @@ const dictionaryENUS = {
     tweet: {
       onCreate: "tweet created successfully",
       onUpdate: "tweet updated successfully",
-      tweetDeleted: "tweet removed successfully",
+      onDelete: `tweet removed successfully`,
     },
   },
 };

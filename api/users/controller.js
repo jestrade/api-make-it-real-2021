@@ -130,20 +130,17 @@ const remove = async (req, res) => {
   await User.findOneAndDelete({ _id: { $eq: id } }, (err, docs) => {
     if (err) {
       res.status(500).json({
-        message: `${locale.translate("errors.user.onDelete")} ${
-          userFind.username
-        }`,
+        message: `${locale.translate("errors.user.onDelete")}`,
       });
-    } else if (docs === null) {
-      console.log("usuario no existe!");
-      res
-        .status(400)
-        .json({ message: locale.translate("errors.user.userNotExists") });
+    } else if (docs) {
+      res.status(200).json({
+        message: `${locale.translate("success.user.onDelete")}`,
+        id: docs._id,
+      });
     } else {
-      console.log("Borrado correctamente");
-      res
-        .status(200)
-        .json({ message: locale.translate("success.user.onDelete") });
+      res.status(404).json({
+        message: `${locale.translate("errors.user.userNotExists")}`,
+      });
     }
   });
 };

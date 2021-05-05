@@ -1,4 +1,5 @@
 const Tweet = require("./model");
+const { locale } = require("../../locale");
 
 const list = (req, res) => {
   const { page = 1, limit = 10 } = req.query;
@@ -68,4 +69,30 @@ const likes = (req, res) => {
     });
 };
 
-module.exports = { list, create, createComment, likes };
+const destroyTweet = async (req, res) => {
+  const { tweetId, userId } = req.body;
+
+  await Tweet.findOneAndDelete(
+    {
+      $and: [{ _id: { $eq: tweetId } }, { user: { $eq: userId } }],
+    },
+    (err, docs) => {
+      if (err) {
+        res.status(500).json({
+          message: `${locale.translate("errors.tweet.onDelete")}`,
+        });
+      } else if (docs) {
+        res.status(200).json({
+          message: `${locale.translate("success.tweet.onDelete")}`,
+          id: docs._id,
+        });
+      } else {
+        res.status(404).json({
+          message: `${locale.translate("errors.tweet.tweetNotExists")}`,
+        });
+      }
+    }
+  );
+};
+
+module.exports = { list, create, createComment, likes, destroyTweet };
