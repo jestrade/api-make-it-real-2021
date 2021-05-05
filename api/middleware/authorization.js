@@ -5,7 +5,7 @@ const {
 const { locale } = require("../../locale");
 
 const usersAuthorization = async (req, res, next) => {
-  const id = req.params.id ?? req.body.id;
+  const id = req.params.id || req.body.id;
   const { userId } = req.body;
 
   const isAdmin = await isUserAdmin(userId);
