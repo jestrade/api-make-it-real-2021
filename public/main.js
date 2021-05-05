@@ -4,8 +4,10 @@ const init = () => {
     document.getElementById("welcome").innerHTML = `Bienvenid@, ${name}`;
     loadTweets();
     document.getElementById("private").style.display = "block";
+    document.getElementById("public").style.display = "none";
   } else {
     document.getElementById("public").style.display = "block";
+    document.getElementById("private").style.display = "none";
   }
 };
 
@@ -81,14 +83,36 @@ const login = () => {
         localStorage.setItem("name", json.data.name);
         document.getElementById("message").innerHTML = "user authenticated!";
         document.getElementById("login_username").value = "";
-        loadTweets();
-        document.getElementById("public").style.display = "none";
-        document.getElementById("private").style.display = "block";
+        init();
       } else {
         document.getElementById("message").innerHTML = json.message;
       }
 
       document.getElementById("login_password").value = "";
+    });
+};
+
+const save = () => {
+  document.getElementById("message").innerHTML = "";
+  const url = "/api/tweets";
+  const tweet = {
+    content: document.getElementById("content").value,
+  };
+
+  const options = {
+    method: "POST",
+    body: JSON.stringify(tweet),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  fetch(url, options)
+    .then((res) => res.json())
+    .then((json) => {
+      document.getElementById("message").innerHTML = "tweet sent!";
+      document.getElementById("content").value = "";
+      loadTweets();
     });
 };
 

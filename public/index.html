@@ -9,17 +9,27 @@
   </head>
   <body onload="init()">
     <h1>Twitter</h1>
+    <div id="message"></div>
     <main>
       <div id="private">
         <div>
           <p id="welcome"></p>
           <button type="button" onclick="logout()">Logout</button>
         </div>
+        <form>
+          <p>
+            <label>
+              <textarea id="content" placeholder="say something"></textarea>
+            </label>
+          </p>
+          <p>
+            <button type="button" onclick="save()">Send</button>
+          </p>
+        </form>
         <h2>Tweets</h2>
         <div id="tweets"></div>
       </div>
       <div id="public">
-        <div id="message"></div>
         <h2>Login</h2>
         <form>
           <p>
