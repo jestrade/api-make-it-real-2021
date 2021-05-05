@@ -1,3 +1,4 @@
+const { verifyIfUserIsOwnOfTweet } = require("../services/tweetService");
 const {
   isUserAdmin,
   verifyIfUserExistById,
@@ -19,8 +20,26 @@ const usersAuthorization = async (req, res, next) => {
   }
 };
 
-const tweetsAuthorization = (req, res, next) => {
-  next();
+/**
+ * Method tweetsAuthorization
+ * check if the user is the owner of the tweet or is an administrator user.
+ * @param {*} req - request
+ * @param {*} res - response
+ * @param {*} next - callback
+ * @returns mixed
+ */
+const tweetsAuthorization = async (req, res, next) => {
+  const { userId, tweetId } = req.body;
+  const result = await verifyIfUserIsOwnOfTweet(userId, tweetId);
+  const isAdmin = await isUserAdmin(userId);
+
+  if (result || isAdmin) {
+    next();
+  } else {
+    res.status(403).json({
+      message: locale.translate("errors.operationNotAllowed"),
+    });
+  }
 };
 
 module.exports = { usersAuthorization, tweetsAuthorization };

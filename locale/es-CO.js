@@ -23,6 +23,7 @@ const dictionaryESCO = {
     },
     tweet: {
       onDelete: "error al intentar eliminar el tweet",
+      tweetNotExists: "tweet no existe",
     },
   },
   success: {
@@ -30,12 +31,12 @@ const dictionaryESCO = {
       onUpdate: "usuario actualizado correctamente",
       onCreate: "usuario creado exitosamente",
       onUpdate: "usuario actualizado correctamente",
-      userDeleted: "usuario eliminado correctamente",
+      onDelete: "usuario eliminado correctamente",
     },
     tweet: {
       onCreate: "tweet creado correctamente",
       onUpdate: "tweet actualizado correctamente",
-      tweetDeleted: "tweet eliminado correctamente",
+      onDelete: "tweet eliminado correctamente",
     },
   },
 };
