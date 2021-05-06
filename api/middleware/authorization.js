@@ -1,4 +1,4 @@
-const { verifyIfUserIsOwnOfTweet } = require("../services/tweetService");
+const { verifyIfUserIsOwnsTweet } = require("../services/tweetService");
 const {
   isUserAdmin,
   verifyIfUserExistById,
@@ -30,7 +30,7 @@ const usersAuthorization = async (req, res, next) => {
  */
 const tweetsAuthorization = async (req, res, next) => {
   const { userId, tweetId } = req.body;
-  const result = await verifyIfUserIsOwnOfTweet(userId, tweetId);
+  const result = await verifyIfUserIsOwnsTweet(userId, tweetId);
   const isAdmin = await isUserAdmin(userId);
 
   if (result || isAdmin) {
