@@ -115,7 +115,7 @@ Run project with nodemon
 ```
 
 ## URL live
-https://api-make-it-real-2021.herokuapp.com/#
+https://api-make-it-real-2021.herokuapp.com
 
 ## API
 
