@@ -141,10 +141,7 @@ https://api-make-it-real-2021.herokuapp.com
   <tr>
    <td>/
    </td>
-   <td>Display “hello world” message
-<p>
-<strong><code>public</code></strong>
-   </td>
+   <td>error </td>
    <td>error
    </td>
    <td>error
