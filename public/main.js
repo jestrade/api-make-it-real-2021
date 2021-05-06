@@ -33,7 +33,7 @@ const loadTweets = () => {
       <span>${tweet.likes}</span>
       </div>
       </div>
-      <p class='tweet-date'>${tweet.createdAt}</p>
+      <p class='tweet-date'>${new Date(tweet.createdAt).toLocaleString()}</p>
       </li>`;
       });
       document.getElementById("tweets").innerHTML = `<ul>${html}</ul>`;
