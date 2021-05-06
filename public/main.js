@@ -6,7 +6,7 @@ const init = () => {
     document.getElementById("private").style.display = "block";
     document.getElementById("public").style.display = "none";
   } else {
-    document.getElementById("public").style.display = "block";
+    document.getElementById("public").style.display = "flex";
     document.getElementById("private").style.display = "none";
   }
 };
@@ -19,12 +19,22 @@ const loadTweets = () => {
       const tweets = json?.data;
       let html = ``;
       tweets.forEach((tweet) => {
-        html += `<li>
-                  <p><a href="users.html?id=${tweet.user?._id}">${tweet.user?.name}</a> says:</p>
-                  <p>${tweet.content}</p>
-                  <p><a href="users.html?id=${tweet._id}">comments: ${tweet.comments.length}</a> likes: ${tweet.likes}</p>
-                  <p>${tweet.createdAt}</p>
-                </li>`;
+      html += `<li>
+      <p class='username'>
+      <a class="user"  href='users.html?id=${tweet.user?._id}'> ${tweet.user?.name}</a> @${tweet.user?.username}</p>
+      <p>${tweet.content}</p>
+      <div class="interactionButtons">
+      <div class="comments">
+      <a class="link comment" href='users.html?id=${tweet?._id}'> <i class="far fa-comment"></i> </a>
+      <span>${tweet.comments.length}</span>
+      </div>
+      <div class="likes">
+      <a class="link like" href='#'> <i class="far fa-heart"></i> </a>
+      <span>${tweet.likes}</span>
+      </div>
+      </div>
+      <p class='tweet-date'>${tweet.createdAt}</p>
+      </li>`;
       });
       document.getElementById("tweets").innerHTML = `<ul>${html}</ul>`;
     });
@@ -81,11 +91,14 @@ const login = () => {
       if (json.message === "ok") {
         localStorage.setItem("username", json.data.username);
         localStorage.setItem("name", json.data.name);
+        document.getElementById('message').style.display = 'block';
         document.getElementById("message").innerHTML = "user authenticated!";
         document.getElementById("login_username").value = "";
         init();
       } else {
+        document.getElementById('message').style.display = 'block';
         document.getElementById("message").innerHTML = json.message;
+
       }
 
       document.getElementById("login_password").value = "";
@@ -120,7 +133,8 @@ const logout = () => {
   const url = "/api/users/logout";
   fetch(url);
   localStorage.clear();
-  document.getElementById("message").innerHTML = "";
-  document.getElementById("public").style.display = "block";
+  document.getElementById('message').innerHTML = '';
+  document.getElementById('message').style.display = 'none';
+  document.getElementById("public").style.display = "flex";
   document.getElementById("private").style.display = "none";
 };
