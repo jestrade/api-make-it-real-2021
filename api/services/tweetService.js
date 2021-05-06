@@ -1,6 +1,6 @@
 const Tweet = require("../tweets/model");
 
-const verifyIfUserIsOwnOfTweet = async (userId, tweetId) => {
+const verifyIfUserIsOwnsTweet = async (userId, tweetId) => {
   const validateUser = await Tweet.find({
     $and: [{ _id: { $eq: tweetId } }, { user: { $eq: userId } }],
   });
@@ -12,4 +12,4 @@ const verifyIfUserIsOwnOfTweet = async (userId, tweetId) => {
   }
 };
 
-module.exports = { verifyIfUserIsOwnOfTweet };
+module.exports = { verifyIfUserIsOwnsTweet };
