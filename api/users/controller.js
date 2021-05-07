@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const { findUserById } = require("../services/userService");
 const { locale } = require("../../locale");
 const { config } = require("../../config");
-const { newAccount } = require("../services/mailer");
+const { newAccount } = require("../services/mailerService");
 
 const User = require("./model");
 
