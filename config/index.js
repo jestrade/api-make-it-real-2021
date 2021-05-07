@@ -16,6 +16,13 @@ const config = {
     connectionString: process.env.DB_CONNECTION_STRING,
   },
   saltRounds: parseInt(process.env.SALT_ROUNDS, 10),
+  mailer: {
+    host: process.env.MAILER_HOST,
+    port: process.env.MAILER_PORT,
+    user: process.env.MAILER_USER,
+    password: process.env.MAILER_PASSWORD,
+  },
+  mail: process.env.MAIL_FROM,
 };
 
 module.exports = { config };
