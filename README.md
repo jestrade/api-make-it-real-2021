@@ -55,6 +55,10 @@ If it return an error, please install [yarn](https://yarnpkg.com/getting-started
   - MAILER_USER -> xx
   - MAILER_PASSWORD -> xx
   - MAIL_FROM -> xx
+  - TWITTER_CONSUMER_KEY -> xx
+  - TWITTER_CONSUMER_SECRET -> xx
+  - TWITTER_TOKEN_KEY -> xx
+  - TWITTER_TOKEN_SECRET -> xx
 
 Example connection string local, more info. [MongoDB](https://www.mongodb.com/try/download/community).
 
@@ -86,6 +90,10 @@ MAILER_PORT=
 MAILER_USER=
 MAILER_PASSWORD=
 MAIL_FROM=
+TWITTER_CONSUMER_KEY=
+TWITTER_CONSUMER_SECRET=
+TWITTER_TOKEN_KEY=
+TWITTER_TOKEN_SECRET=
 ```
 
 ## Install nodemon as development dependency

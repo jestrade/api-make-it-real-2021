@@ -23,6 +23,12 @@ const config = {
     password: process.env.MAILER_PASSWORD,
   },
   mail: process.env.MAIL_FROM,
+  twitter: {
+    consumerKey: process.env.TWITTER_CONSUMER_KEY,
+    consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
+    accessTokenKey: process.env.TWITTER_TOKEN_KEY,
+    accessTokenSecret: process.env.TWITTER_TOKEN_SECRET,
+  },
 };
 
 module.exports = { config };

@@ -5,6 +5,7 @@ const {
   createComment,
   likes,
   destroyTweet,
+  getExternalTweetsByUsername,
 } = require("./controller");
 const { logger } = require("../middleware/logger");
 const { authenticator } = require("../middleware/authenticator");
@@ -24,5 +25,7 @@ router
 router.route("/comments").post(authenticator, validateComment, createComment);
 
 router.route("/likes").post(authenticator, likes);
+
+router.route("/external/:username").get(getExternalTweetsByUsername);
 
 module.exports = router;
