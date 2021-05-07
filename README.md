@@ -395,6 +395,19 @@ body:
    </td>
   </tr>
   <tr>
+   <td>/tweets/external/:username
+   </td>
+   <td>
+   Get tweets from real Twitter
+   </td>
+   <td>error
+   </td>
+   <td>
+   </td>
+   <td>error
+   </td>
+  </tr>
+  <tr>
    <td>/weather/:city
    </td>
    <td>Get weather from city
