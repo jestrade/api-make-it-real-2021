@@ -66,10 +66,15 @@ const login = async (req, res) => {
     const result = await bcrypt.compare(password, foundUser.password);
     if (result) {
       const token = jwt.sign({ userId }, config.jwtKey);
+      const cookieProps = {
+        domain: "fed-mir-2021.s3-website-us-east-1.amazonaws.com",
+        maxAge: 60 * 60 * 24 * 1000,
+        httpOnly: true,
+      };
 
       res
         .status(200)
-        .cookie("token", token, { maxAge: 60 * 60 * 24 * 1000, httpOnly: true })
+        .cookie("token", token, cookieProps)
         .json({
           data: {
             username: foundUser.username,
