@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 const { findUserById } = require("../services/userService");
 const { locale } = require("../../locale");
 const { config } = require("../../config");
+const { newAccount } = require("../services/mailer");
 
 const User = require("./model");
 
@@ -49,6 +50,8 @@ const create = async (req, res) => {
 
   const newUser = new User(user);
   newUser.save().then((userCreated) => {
+    newAccount(user.email);
+
     res.status(200).json(userCreated);
   });
 };

@@ -50,6 +50,11 @@ If it return an error, please install [yarn](https://yarnpkg.com/getting-started
   - APIWEATHERKEY -> Is used to consume the [API](https://openweathermap.org/api).
   - DB_CONNECTION_STRING -> Connection string to connect [mongodb](https://mongoosejs.com/docs/connections.html) database
   - SALT_ROUNDS -> Controls how much time is needed to calculate a single BCrypt hash, default is 10.
+  - MAILER_HOST -> xx
+  - MAILER_PORT -> xx
+  - MAILER_USER -> xx
+  - MAILER_PASSWORD -> xx
+  - MAIL_FROM -> xx
 
 Example connection string local, more info. [MongoDB](https://www.mongodb.com/try/download/community).
 
@@ -76,6 +81,11 @@ JWTKEY=
 APIWEATHERKEY=
 DB_CONNECTION_STRING=
 SALT_ROUNDS=
+MAILER_HOST=
+MAILER_PORT=
+MAILER_USER=
+MAILER_PASSWORD=
+MAIL_FROM=
 ```
 
 ## Install nodemon as development dependency
@@ -115,6 +125,7 @@ Run project with nodemon
 ```
 
 ## URL live
+
 https://api-make-it-real-2021.herokuapp.com
 
 ## API
