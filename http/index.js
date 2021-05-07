@@ -10,7 +10,6 @@ app.use(express.json());
 app.use(cookieParser());
 app.use("/api", api);
 app.use("/api/v1", api);
-app.use(express.static("public"));
 
 const init = () => {
   app.listen(port, host, () => {
