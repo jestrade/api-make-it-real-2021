@@ -173,7 +173,9 @@ https://api-make-it-real-2021.herokuapp.com
    </td>
    <td>List all users
 <p>
-<strong><code>public</code></strong>
+<strong><code>private</code></strong>
+<strong><code>
+- Authentication</code></strong>
    </td>
    <td>Create user
 <p>
