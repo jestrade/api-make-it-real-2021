@@ -69,6 +69,7 @@ const login = async (req, res) => {
       const cookieProps = {
         maxAge: 60 * 60 * 24 * 1000,
         httpOnly: true,
+        domain:'.herokuapp.com',
       };
 
       res
