@@ -1,5 +1,6 @@
 const express = require("express");
 const {
+  getOne,
   list,
   create,
   createComment,
@@ -21,6 +22,8 @@ router
   .get(authenticator, list)
   .post(authenticator, validateTweet, create)
   .delete(authenticator, tweetsAuthorization, destroyTweet);
+
+router.route("/:id").get(authenticator, getOne);
 
 router.route("/comments").post(authenticator, validateComment, createComment);
 
