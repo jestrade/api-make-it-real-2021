@@ -3,7 +3,7 @@ const { config } = require("../../config");
 const { locale } = require("../../locale");
 
 const authenticator = (req, res, next) => {
-  const token = req.cookies.token;
+  const token = req.cookies.token || req.headers.authorization;
 
   try {
     const decoded = jwt.verify(token, config.jwtKey);

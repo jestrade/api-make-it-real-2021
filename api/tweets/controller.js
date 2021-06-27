@@ -2,6 +2,18 @@ const Tweet = require("./model");
 const { locale } = require("../../locale");
 const { getTweetsByUsername } = require("../services/twitterService");
 
+const getOne = (req, res) => {
+  const { id } = req.params;
+  Tweet.findById(id, ["content", "comments", "likes", "user", "createdAt"])
+    .populate("user", ["name", "username"])
+    .populate("comments.user", ["name", "username"])
+    .then(async (tweet) => {
+      res.status(200).json({
+        data: tweet,
+      });
+    });
+};
+
 const list = (req, res) => {
   const { page = 1, limit = 10 } = req.query;
   const skip = (page - 1) * limit;
@@ -109,6 +121,7 @@ const getExternalTweetsByUsername = async (req, res) => {
 };
 
 module.exports = {
+  getOne,
   list,
   create,
   createComment,
