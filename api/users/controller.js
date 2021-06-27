@@ -76,6 +76,7 @@ const login = async (req, res) => {
         .cookie("token", token, cookieProps)
         .json({
           data: {
+            id: userId,
             username: foundUser.username,
             name: foundUser.name,
             token: token,
