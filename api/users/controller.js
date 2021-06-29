@@ -7,6 +7,21 @@ const { newAccount } = require("../services/mailerService");
 
 const User = require("./model");
 
+const getOne = async (req, res) => {
+  const { id } = req.params;
+  User.findById(id, [
+    "name",
+    "username",
+    "email",
+    "createdAt",
+    "updatedAt",
+  ]).then(async (user) => {
+    res.status(200).json({
+      data: user,
+    });
+  });
+};
+
 const list = async (req, res) => {
   const { page = 1, limit = 10 } = req.query;
   const skip = (page - 1) * limit;
@@ -158,6 +173,7 @@ const logout = (req, res) => {
 };
 
 module.exports = {
+  getOne,
   list,
   create,
   update,
